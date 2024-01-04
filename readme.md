@@ -18,6 +18,7 @@
 # [ 6 ] package.json = type:module
 
 - type:module
+- "dev": "nodemon -r dotenv/config --experimental-json-modules ./scr/index.js"
 
 # [ 7 ] Nodemon Setup
 
@@ -25,6 +26,7 @@
 
 # [ 8 ] src folder create and Directory Create as per below
 
+- mkdir scr/controller, scr/controller, scr/db, scr/middleware, scr/route, scr/models, scr/utils, public/temp
 - controllers
 - db
 - middleware
