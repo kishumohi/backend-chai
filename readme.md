@@ -38,3 +38,39 @@
 
 - npm i -D prettier
 - create file in main directory [1] .prettierrc [2] .prettierignore
+
+# [ 10 ] npm i mongoose express dotenv
+
+# [ 11 ] env PORT MONGO_URI
+
+# [ 12 ] DATABASE CONNECTION
+
+# [ 13 ] npm i cookie-parser cors
+
+# [ 14 ] cors setup
+
+- app.use(cors{})
+- app.use(express.json())
+- app.use(express.urlencoded({ extended: true }));
+
+# [ 15 ] create asyncHandler
+
+# [ 16 ] Node JS error Handler
+
+- override the error
+- [A] Apiresponse = constructor create
+- [B] asyncHandler = constructor create
+
+# [ 17 ]mongoose Schema Create
+
+- [A] user.model.js = userSchema
+- [B] video.model.js = videoSchema
+
+# [ 18 ]npm i mongoose-aggregate-paginate-v2
+
+# [ 19 ]npm i bcrypt jsonwebtoken
+
+- [A] pre hooks Setup = isModified
+- [B] userSchema.methods.isPasswordCorrect
+- [C] userSchema.methods.generateAccessToken
+- [D] userSchema.methods.generateRefreshToken
