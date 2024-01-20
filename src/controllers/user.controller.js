@@ -18,16 +18,16 @@ const registerUser = asyncHandler(async (req, res) => {
 
   // TODO:[1] get user details from frontend
   const { fullName, email, username, password } = req.body;
-  console.log("email:", email);
+  // console.log("email:", email);
 
   // TODO:[2] validation - not empty
   if (
-    [fullname, email, username, password].some((field) => field?.trim() === "")
+    [fullName, email, username, password].some((field) => field?.trim() === "")
   ) {
     throw new ApiError(400, "All Fields are required");
   }
   // TODO: [3] check if user allready exists :      username, email
-  const existedUser = User.findOne({
+  const existedUser = await User.findOne({
     $or: [{ email }, { username }],
   });
   if (existedUser) {
@@ -35,14 +35,14 @@ const registerUser = asyncHandler(async (req, res) => {
   }
   // TODO:[4] check for images , check for avatar
   const avatarLocalPath = req.files?.avatar[0]?.path;
-  const coverImageLocalPath = req.files?.coverImage[0]?.path;
+  // const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
   if (!avatarLocalPath) {
     throw new ApiError(400, "Avatar file is required");
   }
   // TODO:[5] upload them to cloudinary, check for avatar
   const avatar = await uploadOnCloudinary(avatarLocalPath);
-  const coverImage = await uploadOnCloudinary(coverImageLocalPath);
+  // const coverImage = await uploadOnCloudinary(coverImageLocalPath);
   if (!avatar) {
     throw new ApiError(400, "Avarat file is required");
   }
@@ -50,13 +50,13 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     fullName,
     avatar: avatar.url,
-    coverImage: coverImage?.url || "",
+    // coverImage: coverImage?.url || "",
     email,
     password,
     username: username.toLowerCase(),
   });
   // TODO:[7] remove password and refresh token field from response
-  const createdUser = await User.findByID(user._id).select(
+  const createdUser = await User.findById(user._id).select(
     "-password -refreshToken"
   );
   // TODO:[8] check for user creation
