@@ -27,7 +27,7 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String, //cludinary url
-      require: true,
+      required: true,
     },
     coverImage: {
       type: String, //cludinary url
@@ -40,7 +40,7 @@ const userSchema = new Schema(
     ],
     password: {
       type: String,
-      require: [true, "Password is required"],
+      required: [true, "Password is required"],
     },
     refreshToken: {
       type: String,
@@ -87,4 +87,4 @@ userSchema.methods.generateRefreshToken = function () {
   );
 };
 
-export const User = mongoose.Schema("User", userSchema);
+export const User = mongoose.model("User", userSchema);
